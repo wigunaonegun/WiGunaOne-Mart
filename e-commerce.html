@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kecamatan Mart</title>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        /* Menghias Kolom Pencarian */
+        .area-pencarian {
+            margin-top: 20px;
+        }
+
+        .input-cari {
+            width: 80%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px; /* Membuat sudut kolom melengkung halus */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-cari:focus {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02); /* Sedikit membesar saat diklik */
+        }
+
+        /* Pembungkus Utama untuk Semua Produk */
+        .kontainer-produk {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        /* Menghias Kotak Produk */
+        .kartu-produk {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 280px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.3s; /* Efek transisi halus saat produk disembunyikan */
+        }
+
+        .kartu-produk img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        h3 {
+            margin: 15px 0 5px 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .harga {
+            color: #ff5722;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 5px 0 10px 0;
+        }
+
+        .deskripsi {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        /* Menghias Tombol WhatsApp */
+        .tombol-wa {
+            display: block;
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .tombol-wa:hover {
+            background-color: #1ebd58;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Kecamatan Mart 🛒</h1>
+        <p>Belanja online hemat, ongkir murah sekecamatan!</p>
+        
+        <!-- TAMBAHAN: Elemen Input Search Bar -->
+        <div class="area-pencarian">
+            <input type="text" id="kolomCari" class="input-cari" placeholder="Cari barang kebutuhan Anda di sini..." onkeyup="cariProduk()">
+        </div>
+    </header>
+
+    <main class="kontainer-produk">
+        
+        <!-- PRODUK 1 -->
+        <div class="kartu-produk">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" alt="Sepatu Keren">
+            <h3 class="nama-produk">Sepatu Sport Lokal</h3>
+            <p class="harga">Rp 150.000</p>
+            <p class="deskripsi">Sepatu nyaman untuk olahraga dan jalan-jalan santai warga kecamatan. Stok terbatas!</p>
+            <a class="tombol-wa" href="https://wa.me/628123456789?text=Halo%20Admin,%20saya%20mau%20beli%20Sepatu%20Sport" target="_blank">Beli Lewat WhatsApp</a>
+        </div>
+
+        <!-- PRODUK 2 -->
+        <div class="kartu-produk">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" alt="Jam Tangan">
+            <h3 class="nama-produk">Jam Tangan Minimalis</h3>
+            <p class="harga">Rp 250.000</p>
+            <p class="deskripsi">Jam tangan elegan tahan air. Sangat cocok untuk dipakai rapat desa atau kondangan.</p>
+            <a class="tombol-wa" href="https://wa.me/628123456789?text=Halo%20Admin,%20saya%20mau%20beli%20Jam%20Tangan" target="_blank">Beli Lewat WhatsApp</a>
+        </div>
+
+        <!-- PRODUK 3 -->
+        <div class="kartu-produk">
+            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300" alt="Headphone">
+            <h3 class="nama-produk">Headphone Bass Mantap</h3>
+            <p class="harga">Rp 180.000</p>
+            <p class="deskripsi">Suara jernih, nge-bass, dan tanpa kabel. Pas buat nemenin pemuda pos ronda malam-malam.</p>
+            <a class="tombol-wa" href="https://wa.me/628123456789?text=Halo%20Admin,%20saya%20mau%20beli%20Headphone" target="_blank">Beli Lewat WhatsApp</a>
+        </div>
+
+    </main>
+
+    <!-- TAMBAHAN: Logika JavaScript untuk Fitur Pencarian -->
+    <script>
+        function cariProduk() {
+            // 1. Ambil teks yang diketik pengguna dan ubah jadi huruf kecil semua
+            let kataKunci = document.getElementById("kolomCari").value.toLowerCase();
+            
+            // 2. Ambil semua kotak produk yang ada di halaman
+            let daftarProduk = document.getElementsByClassName("kartu-produk");
+
+            // 3. Lakukan perulangan (looping) untuk mengecek produk satu per satu
+            for (let i = 0; i < daftarProduk.length; i++) {
+                // Ambil nama produk di dalam kartu ke-i
+                let namaProduk = daftarProduk[i].getElementsByClassName("nama-produk")[0].innerText.toLowerCase();
+                
+                // 4. Jika nama produk mengandung kata kunci yang diketik...
+                if (namaProduk.includes(kataKunci)) {
+                    daftarProduk[i].style.display = "flex"; // Tetap tampilkan
+                } else {
+                    daftarProduk[i].style.display = "none"; // Sembunyikan produk
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
